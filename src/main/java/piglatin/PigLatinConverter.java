@@ -1,4 +1,4 @@
-package converter;
+package piglatin;
 
 import java.util.Scanner;
 
