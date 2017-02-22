@@ -4,6 +4,13 @@ import java.util.Scanner;
 
 public class PigLatinConverter {
 	
+	public static boolean isVowel(char letter) {
+		if (letter == 'a' || letter == 'e' || letter == 'i' || letter == 'o' || letter == 'u' || letter == 'y') {
+			return true;
+		}
+		return false;
+	}
+	
 	public static String getInputFromCommand() {
 		Scanner scan = new Scanner(System.in);
 		String input = scan.next();
