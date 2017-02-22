@@ -10,6 +10,6 @@ public class PigLatinConverterTest {
   @Test
   public void testConvertWordToPigLatin() {
 	String output = PigLatinConverter.convertWordToPigLatin("hello");
-    assertEquals(output, "Ellohay");
+    assertEquals(output, "ellohay");
   }
 }
