@@ -2,12 +2,22 @@ import java.util.Scanner;
 
 public class PigLatinConverter {
 	
-	public static void main(String[] args) {
+	public static String getInputFromCommand() {
 		Scanner scan = new Scanner(System.in);
-		String word = "";
+		String input = scan.next();
 		
-		word = scan.next();
+		return input;
+	}
+	
+	public static String convertWordToPigLatin(String word) {
+		return "Ellohay!";
+	}
+	
+	public static void main(String[] args) {
+		String input = getInputFromCommand();
 		
-		System.out.println("Ellohay!");
+		String output = convertWordToPigLatin(input);
+		
+		System.out.println(output);
 	}
 }
