@@ -8,9 +8,15 @@ import org.junit.Test;
 
 public class PigLatinConverterTest {
 	@Test
-	public void testConvertWordToPigLatin() {
+	public void testConvertWordConsToPigLatin() {
 		String output = PigLatinConverter.convertWordToPigLatin("hello");
 		assertEquals(output, "ellohay");
+	}
+
+	@Test
+	public void testConvertWordVowelToPigLatin() {
+		String output = PigLatinConverter.convertWordToPigLatin("aberration");
+		assertEquals(output, "aberrationay");
 	}
 	
 	@Test
