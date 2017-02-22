@@ -10,7 +10,7 @@ public class PigLatinConverter {
 	}
 	
 	public static String convertWordToPigLatin(String word) {
-		return "Ellohay!";
+		return "Ellohay";
 	}
 	
 	public static void main(String[] args) {
