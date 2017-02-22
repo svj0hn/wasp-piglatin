@@ -1,0 +1,8 @@
+*.asv
+*.jar
+*.class
+*.log
+*.bbl
+.DS_Store
+*.aux
+*.bbl
