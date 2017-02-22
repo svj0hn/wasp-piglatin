@@ -26,7 +26,7 @@ public class PigLatinConverter {
         if(isVowel(word.charAt(0))) {
             out = word + "ay";
         } else {
-            String firstChar = word.substring(0,1); 
+            Auto firstChar = word.substring(0,1); 
             String remaining = word.substring(1, word.length());
             out = remaining + firstChar + "ay"; 
         }
