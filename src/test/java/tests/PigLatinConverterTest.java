@@ -8,19 +8,19 @@ import org.junit.Test;
 
 public class PigLatinConverterTest {
 	@Test
-	public void testInitialSingleConsonant() {
+	public void testConvertWordToPigLatinInitialSingleConsonant() {
 		String output = PigLatinConverter.convertWordToPigLatin("hello");
 		assertEquals(output, "ellohay");
 	}
 	
 	@Test
-	public void testInitialMultipleConsonants() {
+	public void testConvertWordToPigLatinInitialMultipleConsonants() {
 		String output = PigLatinConverter.convertWordToPigLatin("cheers");
 		assertEquals(output, "eerschay");
 	}
 
 	@Test
-	public void testInitialSingleVovel() {
+	public void testConvertWordToPigLatinInitialSingleVovel() {
 		String output = PigLatinConverter.convertWordToPigLatin("aberration");
 		assertEquals(output, "aberrationway");
 	}
@@ -38,4 +38,17 @@ public class PigLatinConverterTest {
 		assertFalse(PigLatinConverter.isVowel('!'));
 		assertFalse(PigLatinConverter.isVowel('#'));
 	}
+	
+	@Test
+	public void testConvertStringToPigLatinSingleWord() {
+		String output = PigLatinConverter.convertStringToPigLatin("fish");
+		assertEquals(output, "ishfay");
+	}
+	
+	@Test
+	public void testConvertStringToPigLatinMultipleWords() {
+		String output = PigLatinConverter.convertStringToPigLatin("one fish is not enough");
+		assertEquals(output, "oneway ishfay isway otnay enoughway");
+	}
+	
 }

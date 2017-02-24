@@ -18,8 +18,10 @@ public class PigLatinConverter {
 		return input;
 	}
 	
+	// TODO: Keep this public? Perhaps better to only keep the convertStringToPigLatin
+	// as public and make this one private?
 	public static String convertWordToPigLatin(String word) {		
-        String out = new String(); 
+        String output = new String(); 
 		
 		int firstVovelIndex = 0;
 		while(!isVowel(word.charAt(firstVovelIndex))) {
@@ -27,15 +29,27 @@ public class PigLatinConverter {
 		}
 		
         if(firstVovelIndex==0) {
-            out = word + "way";
+            output = word + "way";
         } else {
             String leadingConsonants = word.substring(0,firstVovelIndex); 
             String remainingLetters = word.substring(firstVovelIndex, word.length());
-            out = remainingLetters + leadingConsonants + "ay"; 
+            output = remainingLetters + leadingConsonants + "ay"; 
         }
 
-		return out;            
+		return output;            
 	}
+	
+	
+	public static String convertStringToPigLatin(String inputString) {	
+		String[] words = inputString.split(" ");
+		String output = new String();
+		for (String word: words) {
+			output += convertWordToPigLatin(word) + " ";			
+		}
+		
+		return output.substring(0, output.length()-1);
+	}
+	
 	
 	public static void main(String[] args) {
 		String input = getInputFromCommand();
