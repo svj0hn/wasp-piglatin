@@ -18,24 +18,23 @@ public class PigLatinConverter {
 		return input;
 	}
 	
-	public static String convertWordToPigLatin(String word) {
-		//char[] wordArray = word.toCharArray();
-        //char[] outputArray = new char[wordArray.length+1]; 
-        //int indexOfLastChar = wordArray.length - 1;
+	public static String convertWordToPigLatin(String word) {		
         String out = new String(); 
-        if(isVowel(word.charAt(0))) {
-            out = word + "ay";
+		
+		int firstVovelIndex = 0;
+		while(!isVowel(word.charAt(firstVovelIndex))) {
+			firstVovelIndex++;
+		}
+		
+        if(firstVovelIndex==0) {
+            out = word + "way";
         } else {
-            String firstChar = word.substring(0,1); 
-            String remaining = word.substring(1, word.length());
-            out = remaining + firstChar + "ay"; 
+            String leadingConsonants = word.substring(0,firstVovelIndex); 
+            String remainingLetters = word.substring(firstVovelIndex, word.length());
+            out = remainingLetters + leadingConsonants + "ay"; 
         }
 
-        
-
-
-		return out;
-            
+		return out;            
 	}
 	
 	public static void main(String[] args) {
