@@ -23,16 +23,16 @@ public class PigLatinConverter {
 	public static String convertWordToPigLatin(String word) {		
         String output = new String(); 
 		
-		int firstVovelIndex = 0;
-		while(!isVowel(word.charAt(firstVovelIndex))) {
-			firstVovelIndex++;
+		int firstVowelIndex = 0;
+		while(!isVowel(word.charAt(firstVowelIndex))) {
+			firstVowelIndex++;
 		}
 		
-        if(firstVovelIndex==0) {
+        if(firstVowelIndex==0) {
             output = word + "way";
         } else {
-            String leadingConsonants = word.substring(0,firstVovelIndex); 
-            String remainingLetters = word.substring(firstVovelIndex, word.length());
+            String leadingConsonants = word.substring(0,firstVowelIndex); 
+            String remainingLetters = word.substring(firstVowelIndex, word.length());
             output = remainingLetters + leadingConsonants + "ay"; 
         }
 
