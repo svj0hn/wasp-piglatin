@@ -18,8 +18,7 @@ public class PigLatinConverter {
 		return input;
 	}
 	
-	// TODO: Keep this public? Perhaps better to only keep the convertStringToPigLatin
-	// as public and make this one private?
+	
 	public static String convertWordToPigLatin(String word) {		
         String output = new String(); 
 		
@@ -54,7 +53,7 @@ public class PigLatinConverter {
 	public static void main(String[] args) {
 		String input = getInputFromCommand();
 		
-		String output = convertWordToPigLatin(input);
+		String output = convertStringToPigLatin(input);
 		
 		System.out.println(output);
 	}
