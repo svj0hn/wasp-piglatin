@@ -20,7 +20,7 @@ public class PigLatinConverterTest {
 	}
 
 	@Test
-	public void testConvertWordToPigLatinInitialSingleVovel() {
+	public void testConvertWordToPigLatinInitialSingleVowel() {
 		String output = PigLatinConverter.convertWordToPigLatin("aberration");
 		assertEquals(output, "aberrationway");
 	}
