@@ -50,5 +50,11 @@ public class PigLatinConverterTest {
 		String output = PigLatinConverter.convertStringToPigLatin("one fish is not enough");
 		assertEquals(output, "oneway ishfay isway otnay enoughway");
 	}
+
+	@Test
+	public void testConvertStringToPigLatinMultipleWordsAndPunktuation() {
+		String output = PigLatinConverter.convertStringToPigLatin("lund is the best!");
+		assertEquals(output, "undlay isway ethay estbay");
+	}
 	
 }

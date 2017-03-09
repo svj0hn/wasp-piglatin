@@ -13,21 +13,17 @@ public class PigLatinConverter {
 	
 	public static String getInputFromCommand() {
 		Scanner scan = new Scanner(System.in);
-		String input = scan.next();
-		
+		String input = scan.nextLine();
 		return input;
 	}
 	
-	
 	public static String convertWordToPigLatin(String word) {		
         String output = new String(); 
-		
 		int firstVowelIndex = 0;
 		while(!isVowel(word.charAt(firstVowelIndex))) {
 			firstVowelIndex++;
 		}
-		
-        if(firstVowelIndex==0) {
+        if(firstVowelIndex == 0) {
             output = word + "way";
         } else {
             String leadingConsonants = word.substring(0,firstVowelIndex); 
@@ -40,7 +36,7 @@ public class PigLatinConverter {
 	
 	
 	public static String convertStringToPigLatin(String inputString) {	
-		String[] words = inputString.split(" ");
+		String[] words = inputString.split("\\W+");
 		String output = new String();
 		for (String word: words) {
 			output += convertWordToPigLatin(word) + " ";			
