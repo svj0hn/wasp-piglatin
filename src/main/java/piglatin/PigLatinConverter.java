@@ -13,7 +13,7 @@ public class PigLatinConverter {
 	
 	public static String getInputFromCommand() {
 		Scanner scan = new Scanner(System.in);
-		String input = scan.next();
+		String input = scan.nextLine();
 		
 		return input;
 	}
