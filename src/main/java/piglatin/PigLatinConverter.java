@@ -3,6 +3,11 @@ package piglatin;
 import java.util.Scanner;
 
 public class PigLatinConverter {
+    
+    public static final String ANSI_RED = "\u001B[31m";
+    public static final String ANSI_RESET = "\u001B[0m";
+    public static final String ANSI_GREEN = "\u001B[32m";
+    public static final String ANSI_BLUE = "\u001B[34m";
 	
 	public static boolean isVowel(char letter) {
 		if (letter == 'a' || letter == 'e' || letter == 'i' || letter == 'o' || letter == 'u' || letter == 'y') {
@@ -13,6 +18,7 @@ public class PigLatinConverter {
 	
 	public static String getInputFromCommand() {
 		Scanner scan = new Scanner(System.in);
+        System.out.println(ANSI_GREEN + "Please enter a word/sentence:" + ANSI_RESET);
 		String input = scan.next();
 		
 		return input;
@@ -52,9 +58,8 @@ public class PigLatinConverter {
 	
 	public static void main(String[] args) {
 		String input = getInputFromCommand();
-		
 		String output = convertStringToPigLatin(input);
-		
-		System.out.println(output);
+        System.out.println(ANSI_RESET + "The translation of '" + ANSI_RED  + input + ANSI_RESET + "' is:");
+		System.out.println(ANSI_BLUE + output + ANSI_RESET);
 	}
 }
