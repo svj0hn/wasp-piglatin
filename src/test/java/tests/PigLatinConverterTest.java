@@ -6,6 +6,9 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
+
 public class PigLatinConverterTest {
 	@Test
 	public void testConvertWordToPigLatinInitialSingleConsonant() {
@@ -49,6 +52,19 @@ public class PigLatinConverterTest {
 	public void testConvertStringToPigLatinMultipleWords() {
 		String output = PigLatinConverter.convertStringToPigLatin("one fish is not enough");
 		assertEquals(output, "oneway ishfay isway otnay enoughway");
+	}
+	
+	@Test
+	public void testGetInputFromCommand() {
+		String input = "some#anNoYING%%str!ng";
+		InputStream stdin = System.in;
+		
+		InputStream in = new ByteArrayInputStream(input.getBytes());
+		System.setIn(in); // Spoof user input
+		String output = PigLatinConverter.getInputFromCommand();
+		System.setIn(stdin);
+		
+		assertEquals(output, "some#anNoYING%%str!ng");
 	}
 	
 }
