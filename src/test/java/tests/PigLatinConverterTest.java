@@ -64,7 +64,7 @@ public class PigLatinConverterTest {
 		String output = PigLatinConverter.getInputFromCommand();
 		System.setIn(stdin);
 		
-		assertEquals(output, "some#anNoYING%%str!ng");
+		assertEquals(output, input);
 	}
 	
 }

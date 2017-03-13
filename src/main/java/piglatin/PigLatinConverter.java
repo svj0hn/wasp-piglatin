@@ -17,11 +17,9 @@ public class PigLatinConverter {
 		
 		try {
 			input = scan.nextLine();
-		}
-		catch (java.util.NoSuchElementException e) {
+		} catch (java.util.NoSuchElementException e) {
 			System.out.println("NoSuchElementException occured while scanning input!");
-		}
-		catch (java.lang.IllegalStateException e) {
+		} catch (java.lang.IllegalStateException e) {
 			System.out.println("IllegalStateException occured while scanning input!");
 		}
 		
