@@ -62,5 +62,12 @@ public class PigLatinConverterTest {
 		String output = PigLatinConverter.convertStringToPigLatin("hello, you imbecile");
 		assertEquals(output, "ellohay, youway imbecileway");
 	}
+
+
+	@Test
+	public void testConvertStringToPigLatinInterpunctuation3() {
+		String output = PigLatinConverter.convertStringToPigLatin("you must construct more pylons!!!");
+		assertEquals(output, "youway ustmay onstructcay oremay ylonspay!!!");
+	}
 	
 }

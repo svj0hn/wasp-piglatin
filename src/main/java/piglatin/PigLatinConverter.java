@@ -44,27 +44,20 @@ public class PigLatinConverter {
         String[] words = inputString.split("\\W+");
         String[] delimiters = inputString.split("\\w+");
 		String output = new String();
-        // The following line does not wor´k
+        // The following line does not wor´k, why? does it need to work?
         //output += delimiters[0]; 
         int i = 1;
-        String delimiter; 
-        int finalDelimiterIndex = 0; 
 		for (String word: words) {
-            if(i < delimiters.length){ // Usually we use a delimiter
-                delimiter = delimiters[i];
-            } else {
-                delimiter = " "; 
-                finalDelimiterIndex = 1; 
-
-            }
             if(word.length()>0) {
                 output += convertWordToPigLatin(word);
             }
-            output += delimiter; 
+            if(i < delimiters.length){ // Usually we use a delimiter
+                output += delimiters[i];
+            }
             i++; 			
 		}
 		
-		return output.substring(0, output.length()-finalDelimiterIndex);
+		return output;
 	}
 	
 	
