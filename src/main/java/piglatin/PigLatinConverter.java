@@ -70,20 +70,19 @@ public class PigLatinConverter {
         String[] words = inputString.split("\\W+");
         String[] delimiters = inputString.split("\\w+");
 		String output = new String();
-        // The following line does not wor´k, why? does it need to work?
-        //output += delimiters[0]; 
         int i = 1;
 		for (String word: words) {
             if(word.length()>0) {
                 output += convertWordToPigLatin(word);
             }
-            if(i < delimiters.length){ // Usually we use a delimiter
+            if(i < delimiters.length){ 
+                // Usually we use a delimiter, but if some were missed, ignore!
                 output += delimiters[i];
             }
             i++; 			
 		}
 		
-		return output;
+		return output.trim();
 	}
 	
 	public static List<String> convertStringFromPigLatin(String inputString) {	
