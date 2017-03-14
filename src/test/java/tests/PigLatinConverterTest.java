@@ -5,27 +5,49 @@ import piglatin.*;
 import static org.junit.Assert.*;
 
 import org.junit.Test;
+import java.util.*;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 
 public class PigLatinConverterTest {
-	@Test
+ 	@Test
 	public void testConvertWordToPigLatinInitialSingleConsonant() {
 		String output = PigLatinConverter.convertWordToPigLatin("hello");
-		assertEquals(output, "ellohay");
+		assertEquals("ellohay", output);
 	}
 	
 	@Test
 	public void testConvertWordToPigLatinInitialMultipleConsonants() {
 		String output = PigLatinConverter.convertWordToPigLatin("cheers");
-		assertEquals(output, "eerschay");
+		assertEquals("eerschay", output);
 	}
-
+		
 	@Test
 	public void testConvertWordToPigLatinInitialSingleVowel() {
 		String output = PigLatinConverter.convertWordToPigLatin("aberration");
-		assertEquals(output, "aberrationway");
+		assertEquals("aberrationway", output);
+	}
+	
+	@Test
+	public void testConvertWordFromPigLatinInitialSingleConsonant() {
+		List<String> output = PigLatinConverter.convertWordFromPigLatin("ellohay");
+		List<String> expected = Arrays.asList("hello");
+		assertEquals(expected, output);
+	}		
+
+	@Test
+	public void testConvertWordFromPigLatinInitialMultipleConsonants() {
+		List<String> output = PigLatinConverter.convertWordFromPigLatin("eerschay");		
+		List<String> expected = Arrays.asList("heersc","cheers","scheer","rschee");
+		assertEquals(expected, output);
+	}
+	
+	@Test
+	public void testConvertWordFromPigLatinInitialSingleVowel() {
+		List<String> output = PigLatinConverter.convertWordFromPigLatin("aberrationway");		
+		List<String> expected = Arrays.asList("aberration","waberration");
+		assertEquals(expected, output);
 	}
 	
 	@Test
@@ -45,15 +67,21 @@ public class PigLatinConverterTest {
 	@Test
 	public void testConvertStringToPigLatinSingleWord() {
 		String output = PigLatinConverter.convertStringToPigLatin("fish");
-		assertEquals(output, "ishfay");
+		assertEquals("ishfay", output);
 	}
 	
 	@Test
 	public void testConvertStringToPigLatinMultipleWords() {
 		String output = PigLatinConverter.convertStringToPigLatin("one fish is not enough");
-		assertEquals(output, "oneway ishfay isway otnay enoughway");
+		assertEquals("oneway ishfay isway otnay enoughway", output);
 	}
-
+	 
+	@Test
+	public void testConvertStringFromPigLatinSingleWord() {
+		List<String> output = PigLatinConverter.convertStringFromPigLatin("ishfay");		
+		List<String> expected = Arrays.asList("fish","hfis","shfi");
+		assertEquals(expected, output);
+	}
 
 	@Test
 	public void testConvertStringToPigLatinInterpunctuation1() {
@@ -71,6 +99,13 @@ public class PigLatinConverterTest {
 	public void testConvertStringToPigLatinInterpunctuation3() {
 		String output = PigLatinConverter.convertStringToPigLatin("you must construct more pylons!!!");
 		assertEquals(output, "youway ustmay onstructcay oremay ylonspay!!!");
+	}
+		
+	@Test
+	public void testConvertStringFromPigLatinTwoWords() {
+		List<String> output = PigLatinConverter.convertStringFromPigLatin("oneway ishfay");		
+		List<String> expected = Arrays.asList("one fish","one hfis","one shfi","wone fish","wone hfis","wone shfi");		
+		assertEquals(expected, output);
 	}
 	
 	@Test
