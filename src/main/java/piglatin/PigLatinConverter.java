@@ -13,7 +13,15 @@ public class PigLatinConverter {
 	
 	public static String getInputFromCommand() {
 		Scanner scan = new Scanner(System.in);
-		String input = scan.next();
+		String input = "";
+		
+		try {
+			input = scan.nextLine();
+		} catch (java.util.NoSuchElementException e) {
+			System.out.println("NoSuchElementException occured while scanning input!");
+		} catch (java.lang.IllegalStateException e) {
+			System.out.println("IllegalStateException occured while scanning input!");
+		}
 		
 		return input;
 	}
