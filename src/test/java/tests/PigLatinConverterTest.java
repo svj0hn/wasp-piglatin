@@ -49,6 +49,14 @@ public class PigLatinConverterTest {
 		List<String> expected = Arrays.asList("aberration","waberration");
 		assertEquals(expected, output);
 	}
+
+
+	@Test
+	public void testConvertWordToPigLatinInitialSingleVowelMultipleConsonants() {
+		List<String> output = PigLatinConverter.convertWordFromPigLatin("arway");		
+		List<String> expected = Arrays.asList("ar","war","rwa");
+		assertEquals(expected, output);
+	}
 	
 	@Test
 	public void testIsVowel() {
@@ -97,8 +105,8 @@ public class PigLatinConverterTest {
 
 	@Test
 	public void testConvertStringToPigLatinInterpunctuation3() {
-		String output = PigLatinConverter.convertStringToPigLatin("you must construct more pylons!!!");
-		assertEquals(output, "youway ustmay onstructcay oremay ylonspay!!!");
+		String output = PigLatinConverter.convertStringToPigLatin("you must construct additional pylons...");
+		assertEquals(output, "youway ustmay onstructcay additionalway ylonspay...");
 	}
 		
 	@Test
