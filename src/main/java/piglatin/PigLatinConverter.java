@@ -46,24 +46,30 @@ public class PigLatinConverter {
 	}
 	
 	public static List<String> convertWordFromPigLatin(String word) {		
-        List<String> outputs = new ArrayList<String>(); 
-		if (word.substring(word.length()-3, word.length()).equals("way")){			
-			outputs.add(word.substring(0, word.length()-3));
-			outputs.add("w" + word.substring(0, word.length()-3));
-		} else if (word.substring(word.length()-2, word.length()).equals("ay")){			
-			int lastConsonantIndex = word.length()-3;
-			while(!isVowel(word.charAt(lastConsonantIndex))) {				
-				String candidateWord = word.substring(lastConsonantIndex, word.length()-2)+word.substring(0,lastConsonantIndex);				
-				outputs.add(candidateWord);
-				lastConsonantIndex--;
-			}			
-		} else {
-			throw new IllegalArgumentException(word + " is not a valid pig latin word!");
+		List<String> outputs = new ArrayList<String>(); 
+		
+		// Ensure that the word ends with "ay" and strip it away...
+		String ending = word.substring(word.length()-2, word.length());
+		if (!ending.equals("ay")) {
+			System.out.println(word + " is not a valid pig latin word!");
 		}	
-
+		
+		// Handle the case when the word ends with "way"
+		String remainingWord = word.substring(0, word.length()-2);
+		int lastConsonantIndex = remainingWord.length()-1;
+		if ((remainingWord.charAt(lastConsonantIndex) == 'w') && isVowel(remainingWord.charAt(0))){			
+			outputs.add(remainingWord.substring(0,remainingWord.length()-1));
+		}
+		
+		// Successively, move consonants to the beginning...		
+		while(!isVowel(remainingWord.charAt(lastConsonantIndex))) {				
+			String candidateWord = remainingWord.substring(lastConsonantIndex, remainingWord.length())+word.substring(0,lastConsonantIndex);				
+			outputs.add(candidateWord);
+			lastConsonantIndex--;
+		}
+		
 		return outputs;            
 	}
-	
 	
 	public static String convertStringToPigLatin(String inputString) {	
         inputString = inputString.trim(); 
@@ -90,9 +96,13 @@ public class PigLatinConverter {
 		List<String> outputs = new ArrayList<String>();		
 		outputs.add("");
 		
+		// For each piglatin word in the input string....
 		for (String word: words) {
+			//... get all the potential non-piglatin candidates....
 			List<String> candidates = convertWordFromPigLatin(word);						
-			// For each candidate option, branch the "tree"...
+			// ... and for each candidate / word option, branch the "tree"
+			// which will eventually contain all possible combintations
+			// of the all possible candidate words...
 			List<String> branchedOutputs = new ArrayList<String>();			
 			for (String output : outputs) {
 				for (String candidate : candidates) {				
@@ -102,7 +112,7 @@ public class PigLatinConverter {
 			outputs=branchedOutputs;				
 		}		
 		
-		// Finally, trim away the leading whitespaces.
+		// Finally, trim away the leading whitespaces...
 		List<String> trimmedOutputs = new ArrayList<String>();		
 		for (String output : outputs) {
 			trimmedOutputs.add(output.trim());
