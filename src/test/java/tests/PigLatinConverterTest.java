@@ -50,5 +50,17 @@ public class PigLatinConverterTest {
 		String output = PigLatinConverter.convertStringToPigLatin("one fish is not enough");
 		assertEquals(output, "oneway ishfay isway otnay enoughway");
 	}
+
+
+	@Test
+	public void testConvertStringToPigLatinInterpunctuation1() {
+		String output = PigLatinConverter.convertStringToPigLatin("north, west, east, and south!");
+		assertEquals(output, "orthnay, estway, eastway, andway outhsay!");
+	}
+	@Test
+	public void testConvertStringToPigLatinInterpunctuation2() {
+		String output = PigLatinConverter.convertStringToPigLatin("hello, you imbecile");
+		assertEquals(output, "ellohay, youway imbecileway");
+	}
 	
 }

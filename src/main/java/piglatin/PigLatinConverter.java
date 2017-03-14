@@ -13,7 +13,7 @@ public class PigLatinConverter {
 	
 	public static String getInputFromCommand() {
 		Scanner scan = new Scanner(System.in);
-		String input = scan.next();
+		String input = scan.nextLine();
 		
 		return input;
 	}
@@ -40,13 +40,31 @@ public class PigLatinConverter {
 	
 	
 	public static String convertStringToPigLatin(String inputString) {	
-		String[] words = inputString.split(" ");
+        inputString = inputString.trim(); 
+        String[] words = inputString.split("\\W+");
+        String[] delimiters = inputString.split("\\w+");
 		String output = new String();
+        // The following line does not wor´k
+        //output += delimiters[0]; 
+        int i = 1;
+        String delimiter; 
+        int finalDelimiterIndex = 0; 
 		for (String word: words) {
-			output += convertWordToPigLatin(word) + " ";			
+            if(i < delimiters.length){ // Usually we use a delimiter
+                delimiter = delimiters[i];
+            } else {
+                delimiter = " "; 
+                finalDelimiterIndex = 1; 
+
+            }
+            if(word.length()>0) {
+                output += convertWordToPigLatin(word);
+            }
+            output += delimiter; 
+            i++; 			
 		}
 		
-		return output.substring(0, output.length()-1);
+		return output.substring(0, output.length()-finalDelimiterIndex);
 	}
 	
 	
