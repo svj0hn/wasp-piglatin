@@ -27,7 +27,7 @@ public class PigLatinConverterTest {
 	public void testConvertWordToPigLatinInitialSingleVowel() {
 		String output = PigLatinConverter.convertWordToPigLatin("aberration");
 		assertEquals("aberrationway", output);
-	}
+	} 
 	
 	@Test
 	public void testConvertWordFromPigLatinInitialSingleConsonant() {
@@ -35,21 +35,21 @@ public class PigLatinConverterTest {
 		List<String> expected = Arrays.asList("hello");
 		assertEquals(expected, output);
 	}		
-
+ 
 	@Test
 	public void testConvertWordFromPigLatinInitialMultipleConsonants() {
 		List<String> output = PigLatinConverter.convertWordFromPigLatin("eerschay");		
 		List<String> expected = Arrays.asList("heersc","cheers","scheer","rschee");
 		assertEquals(expected, output);
 	}
-	
+
 	@Test
 	public void testConvertWordFromPigLatinInitialSingleVowel() {
 		List<String> output = PigLatinConverter.convertWordFromPigLatin("aberrationway");		
-		List<String> expected = Arrays.asList("aberration","waberration");
+		List<String> expected = Arrays.asList("aberration","waberration","nwaberratio");
 		assertEquals(expected, output);
 	}
-	
+
 	@Test
 	public void testIsVowel() {
 		assertTrue(PigLatinConverter.isVowel('a'));
@@ -82,15 +82,14 @@ public class PigLatinConverterTest {
 		List<String> expected = Arrays.asList("fish","hfis","shfi");
 		assertEquals(expected, output);
 	}
-		
+
 	@Test
 	public void testConvertStringFromPigLatinTwoWords() {
 		List<String> output = PigLatinConverter.convertStringFromPigLatin("oneway ishfay");		
 		List<String> expected = Arrays.asList("one fish","one hfis","one shfi","wone fish","wone hfis","wone shfi");		
 		assertEquals(expected, output);
 	}
-	
-	
+		
 	@Test
 	public void testGetInputFromCommand() {
 		String input = "some#anNoYING%%str!ng";
@@ -102,6 +101,6 @@ public class PigLatinConverterTest {
 		System.setIn(stdin);
 		
 		assertEquals(output, input);
-	}
+	} 
 	
 }
