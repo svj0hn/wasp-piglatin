@@ -50,6 +50,14 @@ public class PigLatinConverterTest {
 		assertEquals(expected, output);
 	}
 
+
+	@Test
+	public void testConvertWordToPigLatinInitialSingleVowelMultipleConsonants() {
+		List<String> output = PigLatinConverter.convertWordFromPigLatin("arway");		
+		List<String> expected = Arrays.asList("ar","war","rwa");
+		assertEquals(expected, output);
+	}
+	
 	@Test
 	public void testIsVowel() {
 		assertTrue(PigLatinConverter.isVowel('a'));
@@ -82,14 +90,31 @@ public class PigLatinConverterTest {
 		List<String> expected = Arrays.asList("fish","hfis","shfi");
 		assertEquals(expected, output);
 	}
+  
+	@Test
+	public void testConvertStringToPigLatinInterpunctuation1() {
+		String output = PigLatinConverter.convertStringToPigLatin("north, west, east, and south!");
+		assertEquals(output, "orthnay, estway, eastway, andway outhsay!");
+	}
+	@Test
+	public void testConvertStringToPigLatinInterpunctuation2() {
+		String output = PigLatinConverter.convertStringToPigLatin("hello, you imbecile");
+		assertEquals(output, "ellohay, youway imbecileway");
+	}
 
+	@Test
+	public void testConvertStringToPigLatinInterpunctuation3() {
+		String output = PigLatinConverter.convertStringToPigLatin("you must construct additional pylons...");
+		assertEquals(output, "youway ustmay onstructcay additionalway ylonspay...");
+	}
+		
 	@Test
 	public void testConvertStringFromPigLatinTwoWords() {
 		List<String> output = PigLatinConverter.convertStringFromPigLatin("oneway ishfay");		
 		List<String> expected = Arrays.asList("one fish","one hfis","one shfi","wone fish","wone hfis","wone shfi");		
 		assertEquals(expected, output);
 	}
-		
+  
 	@Test
 	public void testGetInputFromCommand() {
 		String input = "some#anNoYING%%str!ng";

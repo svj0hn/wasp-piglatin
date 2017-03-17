@@ -72,10 +72,20 @@ public class PigLatinConverter {
 	}
 	
 	public static String convertStringToPigLatin(String inputString) {	
-		String[] words = inputString.split(" ");
+        inputString = inputString.trim(); 
+        String[] words = inputString.split("\\W+");
+        String[] delimiters = inputString.split("\\w+");
 		String output = new String();
+        int i = 1;
 		for (String word: words) {
-			output += convertWordToPigLatin(word) + " ";			
+            if(word.length()>0) {
+                output += convertWordToPigLatin(word);
+            }
+            if(i < delimiters.length){ 
+                // Usually we use a delimiter, but if some were missed, ignore!
+                output += delimiters[i];
+            }
+            i++; 			
 		}
 		
 		return output.trim();
