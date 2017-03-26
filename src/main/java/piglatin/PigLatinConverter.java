@@ -76,7 +76,7 @@ public class PigLatinConverter {
                 // For the length of the original word, reproduce case.  
                 cond = charCases.get(i); 
             } else {
-                // for additional characters, only do uppercase if all uppercase. 
+                // for additional characters, only do uppercase if all prior chars uppercase. 
                 cond = onlyUpperCase; 
             }
             if(cond){
