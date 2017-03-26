@@ -47,22 +47,47 @@ public class PigLatinConverter {
 	}
 
     public static String convertMixedCaseWordToPigLatin(String word) {       
-        String output = new String(); 
-        
+        List<Boolean> charCases = getStringUppercaseProfile(word); 
 
-        output = convertWordToPigLatin(word); 
+        String pigword = convertWordToPigLatin(word.toLowerCase()); 
+
+        String output = setStringUppercaseProfile(pigword, charCases); 
         return output;            
     }
 	
 
-    public static List<Boolean> getStringUppercaseProfile(String inputString) {
+    public static List<Boolean> getStringUppercaseProfile(String input) {
         List<Boolean> out = new ArrayList<Boolean>();
-        for(char c : inputString.toCharArray()) {
+        for(char c : input.toCharArray()) {
             out.add(Character.isUpperCase(c)); 
         }
         return out; 
     }
-    
+
+        public static String setStringUppercaseProfile(String str, List<Boolean> charCases) {
+        String out = new String(); 
+
+        // Design choice: If only uppercase, "AY" or "WAY" is also uppercase. Otherwise, it's not.
+        boolean onlyUpperCase = !(charCases.contains(false)); 
+        for (int i = 0, n = str.length(), m = charCases.size(); i < n; i++) {
+            boolean cond; 
+
+            if(i<m) {
+                // For the length of the original word, reproduce case.  
+                cond = charCases.get(i); 
+            } else {
+                // for additional characters, only do uppercase if all uppercase. 
+                cond = onlyUpperCase; 
+            }
+            if(cond){
+                out += str.substring(i,i+1).toUpperCase(); 
+            } else {
+                out += str.substring(i,i+1).toLowerCase(); 
+            }
+        }
+        return out; 
+    }
+
 	public static List<String> convertWordFromPigLatin(String word) {		
 		List<String> outputs = new ArrayList<String>(); 
 		
@@ -97,7 +122,7 @@ public class PigLatinConverter {
         int i = 1;
 		for (String word: words) {
             if(word.length()>0) {
-                output += convertWordToPigLatin(word);
+                output += convertMixedCaseWordToPigLatin(word);
             }
             if(i < delimiters.length){ 
                 // Usually we use a delimiter, but if some were missed, ignore!

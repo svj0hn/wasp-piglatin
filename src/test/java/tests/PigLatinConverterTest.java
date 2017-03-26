@@ -139,10 +139,29 @@ public class PigLatinConverterTest {
 	}
 
 	@Test
-	public void testConvertMixedCaseWordToPigLatin() {
+	public void testConvertMixedCaseWordToPigLatinMixed() {
 		String input = "Jam";
         String expected = "Amjay";  
 		String output = PigLatinConverter.convertMixedCaseWordToPigLatin(input);
+		assertEquals(expected, output); 
+
+	}
+
+	@Test
+	public void testConvertMixedCaseWordToPigLatinUpperCase() {
+		String input = "FANDERS";
+        String expected = "ANDERSFAY";  
+		String output = PigLatinConverter.convertMixedCaseWordToPigLatin(input);
+		assertEquals(expected, output); 
+
+	}
+
+
+	@Test
+	public void testConvertStringToPigLatinMixedCasePunctuationComplicated() {
+		String input = "John has yet to visit IKEA in Linkoping! This surprising fact, while interesting, is alternative.";
+        String expected = "Ohnjay ashay yetway otay isitvay IKEAWAY inway Inkopinglay! Isthay urprisingsay actfay, ilewhay interestingway, isway alternativeway.";  
+		String output = PigLatinConverter.convertStringToPigLatin(input);
 		assertEquals(expected, output); 
 
 	}
