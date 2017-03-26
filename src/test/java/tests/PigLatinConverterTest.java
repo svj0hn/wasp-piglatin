@@ -52,7 +52,7 @@ public class PigLatinConverterTest {
 
 
 	@Test
-	public void testConvertWordToPigLatinInitialSingleVowelMultipleConsonants() {
+	public void testConvertWordFromPigLatinInitialSingleVowelMultipleConsonants() {
 		List<String> output = PigLatinConverter.convertWordFromPigLatin("arway");		
 		List<String> expected = Arrays.asList("ar","war","rwa");
 		assertEquals(expected, output);
