@@ -28,6 +28,7 @@ public class PigLatinConverter {
 		
 	public static String convertWordToPigLatin(String word) {		
         String output = new String(); 
+
 		
 		int firstVowelIndex = 0;
 		while(!isVowel(word.charAt(firstVowelIndex))) {
@@ -44,7 +45,24 @@ public class PigLatinConverter {
 
 		return output;            
 	}
+
+    public static String convertMixedCaseWordToPigLatin(String word) {       
+        String output = new String(); 
+        
+
+        output = convertWordToPigLatin(word); 
+        return output;            
+    }
 	
+
+    public static List<Boolean> getStringUppercaseProfile(String inputString) {
+        List<Boolean> out = new ArrayList<Boolean>();
+        for(char c : inputString.toCharArray()) {
+            out.add(Character.isUpperCase(c)); 
+        }
+        return out; 
+    }
+    
 	public static List<String> convertWordFromPigLatin(String word) {		
 		List<String> outputs = new ArrayList<String>(); 
 		
@@ -90,6 +108,9 @@ public class PigLatinConverter {
 		
 		return output.trim();
 	}
+
+
+
 	
 	public static List<String> convertStringFromPigLatin(String inputString) {	
 		String[] words = inputString.split(" ");		

@@ -127,5 +127,24 @@ public class PigLatinConverterTest {
 		
 		assertEquals(output, input);
 	} 
+
+
+	@Test
+	public void testGetStringUppercaseProfile() {
+		String input = "Jam";
+        List<Boolean> expected = Arrays.asList(true, false, false); 
+		List<Boolean> output = PigLatinConverter.getStringUppercaseProfile(input);
+		assertEquals(expected, output); 
+
+	}
+
+	@Test
+	public void testConvertMixedCaseWordToPigLatin() {
+		String input = "Jam";
+        String expected = "Amjay";  
+		String output = PigLatinConverter.convertMixedCaseWordToPigLatin(input);
+		assertEquals(expected, output); 
+
+	}
 	
 }
