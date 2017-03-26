@@ -64,7 +64,7 @@ public class PigLatinConverter {
         return out; 
     }
 
-        public static String setStringUppercaseProfile(String str, List<Boolean> charCases) {
+    public static String setStringUppercaseProfile(String str, List<Boolean> charCases) {
         String out = new String(); 
 
         // Design choice: If only uppercase, "AY" or "WAY" is also uppercase. Otherwise, it's not.
