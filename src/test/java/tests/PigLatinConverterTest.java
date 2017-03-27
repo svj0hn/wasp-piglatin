@@ -146,5 +146,73 @@ public class PigLatinConverterTest {
 		
 		assertEquals(output, input);
 	} 
+
+
+	@Test
+	public void testGetStringUppercaseProfile() {
+		String input = "Jam";
+        List<Boolean> expected = Arrays.asList(true, false, false); 
+		List<Boolean> output = PigLatinConverter.getStringUppercaseProfile(input);
+		assertEquals(expected, output); 
+
+	}
+
+	@Test
+	public void testSetStringUppercaseProfile() {
+		String inputStr = "jam";
+        List<Boolean> inputProfile = Arrays.asList(false, true, false); 
+        String expected = "jAm"; 
+		String output = PigLatinConverter.setStringUppercaseProfile(inputStr, inputStr, inputProfile);
+		assertEquals(expected, output); 
+
+	}
+
+	@Test
+	public void testConvertMixedCaseWordToPigLatinMixed() {
+		String input = "Jam";
+        String expected = "Amjay";  
+		String output = PigLatinConverter.convertMixedCaseWordToPigLatin(input);
+		assertEquals(expected, output); 
+
+	}
+
+	@Test
+	public void testConvertMixedCaseWordToPigLatinUpperCase() {
+		String input = "FANDERS";
+        String expected = "ANDERSFAY";  
+		String output = PigLatinConverter.convertMixedCaseWordToPigLatin(input);
+		assertEquals(expected, output); 
+
+	}
+
+
+	@Test
+	public void testConvertStringToPigLatinMixedCaseIA() {
+		String input = "You and I are both working at LIU. A cat has appeared in a tree.";
+        String expected = "Youway andway Iway areway othbay orkingway atway IULAY. Away atcay ashay appearedway inway away eetray.";  
+		String output = PigLatinConverter.convertStringToPigLatin(input);
+		assertEquals(expected, output); 
+
+	}
+
+
+	@Test
+	public void testConvertStringToPigLatinMixedCasePunctuationComplicated() {
+		String input = "John has yet to visit IKEA in Linkoping! This surprising fact, while interesting, is alternative.";
+        String expected = "Ohnjay ashay yetway otay isitvay IKEAWAY inway Inkopinglay! Isthay urprisingsay actfay, ilewhay interestingway, isway alternativeway.";  
+		String output = PigLatinConverter.convertStringToPigLatin(input);
+		assertEquals(expected, output); 
+
+	}
+
+
+
+	
+	@Test
+	public void testGetInputFromFile() {		
+		String output = PigLatinConverter.getInputFromFile("src/test/java/tests/testfile.txt");
+		String expected = "iway amway away ittlelay ishfay" + System.lineSeparator() + "owhay oday otnay" + System.lineSeparator() + "avehay anyway iendsfray" + System.lineSeparator();
+		assertEquals(expected, output);
+	} 
 	
 }
