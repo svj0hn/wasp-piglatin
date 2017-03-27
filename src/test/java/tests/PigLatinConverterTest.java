@@ -22,7 +22,13 @@ public class PigLatinConverterTest {
 		String output = PigLatinConverter.convertWordToPigLatin("cheers");
 		assertEquals("eerschay", output);
 	}
-		
+	
+	@Test
+	public void testConvertWordToPigLatinOnlyConsonants() {
+		String output = PigLatinConverter.convertWordToPigLatin("rtfm");
+		assertEquals("rtfmay", output);
+	}
+	
 	@Test
 	public void testConvertWordToPigLatinInitialSingleVowel() {
 		String output = PigLatinConverter.convertWordToPigLatin("aberration");
