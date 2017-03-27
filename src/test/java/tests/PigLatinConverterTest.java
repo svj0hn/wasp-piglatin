@@ -22,7 +22,13 @@ public class PigLatinConverterTest {
 		String output = PigLatinConverter.convertWordToPigLatin("cheers");
 		assertEquals("eerschay", output);
 	}
-		
+	
+	@Test
+	public void testConvertWordToPigLatinOnlyConsonants() {
+		String output = PigLatinConverter.convertWordToPigLatin("rtfm");
+		assertEquals("rtfmay", output);
+	}
+	
 	@Test
 	public void testConvertWordToPigLatinInitialSingleVowel() {
 		String output = PigLatinConverter.convertWordToPigLatin("aberration");
@@ -70,6 +76,19 @@ public class PigLatinConverterTest {
 		assertFalse(PigLatinConverter.isVowel('k'));
 		assertFalse(PigLatinConverter.isVowel('!'));
 		assertFalse(PigLatinConverter.isVowel('#'));
+	}
+	
+	@Test
+	public void testContainsVowel() {
+		assertTrue(PigLatinConverter.containsVowel("nwah"));
+		assertFalse(PigLatinConverter.containsVowel("rtfmnb"));
+	}
+	
+	@Test
+	public void testFindIndexOfFirstVowelInWord() {
+		assertEquals(PigLatinConverter.findIndexOfFirstVowelInWord("andreas"), 0);
+		assertEquals(PigLatinConverter.findIndexOfFirstVowelInWord("frivolously"), 2);
+		assertEquals(PigLatinConverter.findIndexOfFirstVowelInWord("mstrbts"), -1);
 	}
 	
 	@Test
