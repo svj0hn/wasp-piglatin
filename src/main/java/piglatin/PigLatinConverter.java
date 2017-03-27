@@ -35,21 +35,24 @@ public class PigLatinConverter {
 	}
 		
 	public static String convertWordToPigLatin(String word) {		
-        String output = new String(); 
-		
-		int firstVowelIndex = 0;
-		while(!isVowel(word.charAt(firstVowelIndex))) {
-			firstVowelIndex++;
+		String output = new String();
+			
+		if(!containsVowel(word)) {
+			output = word + "ay";
+		} else {
+			int firstVowelIndex = 0;
+			while(!isVowel(word.charAt(firstVowelIndex))) {
+				firstVowelIndex++;
+			}
+			
+			if(firstVowelIndex==0) {
+				output = word + "way";
+			} else {
+				String leadingConsonants = word.substring(0,firstVowelIndex); 
+				String remainingLetters = word.substring(firstVowelIndex, word.length());
+				output = remainingLetters + leadingConsonants + "ay"; 
+			}
 		}
-		
-        if(firstVowelIndex==0) {
-            output = word + "way";
-        } else {
-            String leadingConsonants = word.substring(0,firstVowelIndex); 
-            String remainingLetters = word.substring(firstVowelIndex, word.length());
-            output = remainingLetters + leadingConsonants + "ay"; 
-        }
-
 		return output;            
 	}
 	
