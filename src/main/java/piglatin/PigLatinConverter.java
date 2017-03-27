@@ -1,6 +1,8 @@
 package piglatin;
 
 import java.util.*;
+import java.io.BufferedReader;
+import java.io.FileReader;
 
 public class PigLatinConverter {
 	
@@ -9,6 +11,24 @@ public class PigLatinConverter {
 			return true;
 		}
 		return false;
+	}
+	
+	public static String getInputFromFile(String filename){
+		StringBuilder sb = new StringBuilder();			
+		try{
+			BufferedReader br = new BufferedReader(new FileReader(filename));					
+			String line = br.readLine();
+			while (line != null) {
+				String translatedLine = convertStringToPigLatin(line);
+				sb.append(translatedLine);
+				sb.append(System.lineSeparator());
+				line = br.readLine();
+			}		
+		} catch (java.io.IOException e) {
+			e.printStackTrace();
+		} 
+			
+		return sb.toString();
 	}
 	
 	public static String getInputFromCommand() {

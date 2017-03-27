@@ -128,4 +128,11 @@ public class PigLatinConverterTest {
 		assertEquals(output, input);
 	} 
 	
+	@Test
+	public void testGetInputFromFile() {		
+		String output = PigLatinConverter.getInputFromFile("src/test/java/tests/testfile.txt");
+		String expected = "iway amway away ittlelay ishfay" + System.lineSeparator() + "owhay oday otnay" + System.lineSeparator() + "avehay anyway iendsfray" + System.lineSeparator();
+		assertEquals(expected, output);
+	} 
+	
 }
