@@ -48,6 +48,7 @@ public class PigLatinConverter {
 		
 	public static String convertWordToPigLatin(String word) {		
         String output = new String(); 
+
 		
 		int firstVowelIndex = 0;
 		while(!isVowel(word.charAt(firstVowelIndex))) {
@@ -64,7 +65,55 @@ public class PigLatinConverter {
 
 		return output;            
 	}
+
+    public static String convertMixedCaseWordToPigLatin(String word) {       
+        List<Boolean> charCases = getStringUppercaseProfile(word); 
+        String lowercaseWord = word.toLowerCase(); 
+
+        String pigword = convertWordToPigLatin(lowercaseWord); 
+
+        String output = setStringUppercaseProfile(pigword, lowercaseWord, charCases); 
+        return output;            
+    }
 	
+
+    public static List<Boolean> getStringUppercaseProfile(String input) {
+        List<Boolean> out = new ArrayList<Boolean>();
+        for(char c : input.toCharArray()) {
+            out.add(Character.isUpperCase(c)); 
+        }
+        return out; 
+    }
+
+    public static String setStringUppercaseProfile(String pigword, String startword, List<Boolean> charCases) {
+        String out = new String(); 
+        // Design choice: If only uppercase, "AY" or "WAY" is also uppercase. Otherwise, it's not.
+        boolean onlyUppercase = (!(charCases.contains(false))); 
+
+        if(startword.equals("i") || startword.equals("a") || startword.equals("o")) {
+            onlyUppercase = false; 
+            // Exception: If original word is I, A, or O, it's just a normal word. Do not capitalize. 
+        }
+
+        for (int i = 0, n = pigword.length(), m = charCases.size(); i < n; i++) {
+            boolean makeCharUppercase; 
+
+            if(i<m) {
+                // For the length of the original word, reproduce case.  
+                makeCharUppercase = charCases.get(i); 
+            } else {
+                // for additional characters, only do uppercase if all prior chars uppercase. 
+                makeCharUppercase = onlyUppercase; 
+            }
+            if(makeCharUppercase){
+                out += pigword.substring(i,i+1).toUpperCase(); 
+            } else {
+                out += pigword.substring(i,i+1).toLowerCase(); 
+            }
+        }
+        return out; 
+    }
+
 	public static List<String> convertWordFromPigLatin(String word) {		
 		List<String> outputs = new ArrayList<String>(); 
 		
@@ -99,7 +148,7 @@ public class PigLatinConverter {
         int i = 1;
 		for (String word: words) {
             if(word.length()>0) {
-                output += convertWordToPigLatin(word);
+                output += convertMixedCaseWordToPigLatin(word);
             }
             if(i < delimiters.length){ 
                 // Usually we use a delimiter, but if some were missed, ignore!
@@ -110,6 +159,9 @@ public class PigLatinConverter {
 		
 		return output.trim();
 	}
+
+
+
 	
 	public static List<String> convertStringFromPigLatin(String inputString) {	
 		String[] words = inputString.split(" ");		
