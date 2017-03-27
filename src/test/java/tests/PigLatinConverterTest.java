@@ -143,7 +143,7 @@ public class PigLatinConverterTest {
 		String inputStr = "jam";
         List<Boolean> inputProfile = Arrays.asList(false, true, false); 
         String expected = "jAm"; 
-		String output = PigLatinConverter.setStringUppercaseProfile(inputStr, inputProfile);
+		String output = PigLatinConverter.setStringUppercaseProfile(inputStr, inputStr, inputProfile);
 		assertEquals(expected, output); 
 
 	}
@@ -168,6 +168,16 @@ public class PigLatinConverterTest {
 
 
 	@Test
+	public void testConvertStringToPigLatinMixedCaseIA() {
+		String input = "You and I are both working at LIU. A cat has appeared in a tree.";
+        String expected = "Youway andway Iway areway othbay orkingway atway IULAY. Away atcay ashay appearedway inway away eetray.";  
+		String output = PigLatinConverter.convertStringToPigLatin(input);
+		assertEquals(expected, output); 
+
+	}
+
+
+	@Test
 	public void testConvertStringToPigLatinMixedCasePunctuationComplicated() {
 		String input = "John has yet to visit IKEA in Linkoping! This surprising fact, while interesting, is alternative.";
         String expected = "Ohnjay ashay yetway otay isitvay IKEAWAY inway Inkopinglay! Isthay urprisingsay actfay, ilewhay interestingway, isway alternativeway.";  
@@ -175,5 +185,8 @@ public class PigLatinConverterTest {
 		assertEquals(expected, output); 
 
 	}
+
+
+
 	
 }

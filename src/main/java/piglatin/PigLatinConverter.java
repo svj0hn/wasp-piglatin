@@ -48,10 +48,11 @@ public class PigLatinConverter {
 
     public static String convertMixedCaseWordToPigLatin(String word) {       
         List<Boolean> charCases = getStringUppercaseProfile(word); 
+        String lowercaseWord = word.toLowerCase(); 
 
-        String pigword = convertWordToPigLatin(word.toLowerCase()); 
+        String pigword = convertWordToPigLatin(lowercaseWord); 
 
-        String output = setStringUppercaseProfile(pigword, charCases); 
+        String output = setStringUppercaseProfile(pigword, lowercaseWord, charCases); 
         return output;            
     }
 	
@@ -64,25 +65,30 @@ public class PigLatinConverter {
         return out; 
     }
 
-    public static String setStringUppercaseProfile(String str, List<Boolean> charCases) {
+    public static String setStringUppercaseProfile(String pigword, String startword, List<Boolean> charCases) {
         String out = new String(); 
-
         // Design choice: If only uppercase, "AY" or "WAY" is also uppercase. Otherwise, it's not.
-        boolean onlyUpperCase = !(charCases.contains(false)); 
-        for (int i = 0, n = str.length(), m = charCases.size(); i < n; i++) {
-            boolean cond; 
+        boolean onlyUppercase = (!(charCases.contains(false))); 
+
+        if(startword.equals("i") || startword.equals("a") || startword.equals("o")) {
+            onlyUppercase = false; 
+            // Exception: If original word is I, A, or O, it's just a normal word. Do not capitalize. 
+        }
+
+        for (int i = 0, n = pigword.length(), m = charCases.size(); i < n; i++) {
+            boolean makeCharUppercase; 
 
             if(i<m) {
                 // For the length of the original word, reproduce case.  
-                cond = charCases.get(i); 
+                makeCharUppercase = charCases.get(i); 
             } else {
                 // for additional characters, only do uppercase if all prior chars uppercase. 
-                cond = onlyUpperCase; 
+                makeCharUppercase = onlyUppercase; 
             }
-            if(cond){
-                out += str.substring(i,i+1).toUpperCase(); 
+            if(makeCharUppercase){
+                out += pigword.substring(i,i+1).toUpperCase(); 
             } else {
-                out += str.substring(i,i+1).toLowerCase(); 
+                out += pigword.substring(i,i+1).toLowerCase(); 
             }
         }
         return out; 
