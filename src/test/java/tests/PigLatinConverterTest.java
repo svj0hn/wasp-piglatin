@@ -85,6 +85,13 @@ public class PigLatinConverterTest {
 	}
 	
 	@Test
+	public void testFindIndexOfFirstVowelInWord() {
+		assertEquals(PigLatinConverter.findIndexOfFirstVowelInWord("andreas"), 0);
+		assertEquals(PigLatinConverter.findIndexOfFirstVowelInWord("frivolously"), 2);
+		assertEquals(PigLatinConverter.findIndexOfFirstVowelInWord("mstrbts"), -1);
+	}
+	
+	@Test
 	public void testConvertStringToPigLatinSingleWord() {
 		String output = PigLatinConverter.convertStringToPigLatin("fish");
 		assertEquals("ishfay", output);

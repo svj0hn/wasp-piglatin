@@ -19,6 +19,14 @@ public class PigLatinConverter {
 		return containsVowel(word.substring(1, word.length()));
 	}
 	
+	public static int findIndexOfFirstVowelInWord(String word) {
+		for(int i = 0; i < word.length(); i++) {
+			if(isVowel(word.charAt(i)))
+				return i;
+		}
+		return -1;
+	}
+	
 	public static String getInputFromCommand() {
 		Scanner scan = new Scanner(System.in);
 		String input = "";
@@ -36,23 +44,20 @@ public class PigLatinConverter {
 		
 	public static String convertWordToPigLatin(String word) {		
 		String output = new String();
-			
-		if(!containsVowel(word)) {
+		
+		int firstVowelIndex = findIndexOfFirstVowelInWord(word);
+		
+		// Index of -1 means no vowel was found
+		if(firstVowelIndex == -1) {
 			output = word + "ay";
+		} else if(firstVowelIndex == 0) {
+			output = word + "way";
 		} else {
-			int firstVowelIndex = 0;
-			while(!isVowel(word.charAt(firstVowelIndex))) {
-				firstVowelIndex++;
-			}
-			
-			if(firstVowelIndex==0) {
-				output = word + "way";
-			} else {
-				String leadingConsonants = word.substring(0,firstVowelIndex); 
-				String remainingLetters = word.substring(firstVowelIndex, word.length());
-				output = remainingLetters + leadingConsonants + "ay"; 
-			}
+			String leadingConsonants = word.substring(0,firstVowelIndex); 
+			String remainingLetters = word.substring(firstVowelIndex, word.length());
+			output = remainingLetters + leadingConsonants + "ay"; 
 		}
+		
 		return output;            
 	}
 	
