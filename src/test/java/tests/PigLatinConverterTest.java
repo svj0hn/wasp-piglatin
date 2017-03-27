@@ -79,6 +79,12 @@ public class PigLatinConverterTest {
 	}
 	
 	@Test
+	public void testContainsVowel() {
+		assertTrue(PigLatinConverter.containsVowel("nwah"));
+		assertFalse(PigLatinConverter.containsVowel("rtfmnb"));
+	}
+	
+	@Test
 	public void testConvertStringToPigLatinSingleWord() {
 		String output = PigLatinConverter.convertStringToPigLatin("fish");
 		assertEquals("ishfay", output);

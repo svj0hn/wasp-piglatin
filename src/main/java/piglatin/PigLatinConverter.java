@@ -11,6 +11,14 @@ public class PigLatinConverter {
 		return false;
 	}
 	
+	public static boolean containsVowel(String word) {
+		if(word.isEmpty())
+			return false;
+		if(isVowel(word.charAt(0)))
+			return true;
+		return containsVowel(word.substring(1, word.length()));
+	}
+	
 	public static String getInputFromCommand() {
 		Scanner scan = new Scanner(System.in);
 		String input = "";
